@@ -160,10 +160,11 @@ do
 
     if [[ "$OSTYPE" == "darwin"* ]]; then
         temp_start_date=$(date -j -v +1d -f "%Y-%m-%d" "$temp_start_date" +%Y-%m-%d)
-    fi
-
-    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
         temp_start_date=$(date -I -d "$temp_start_date + 1 day")
+    else
+        echo "Unsupported operating system: $OSTYPE"
+        exit 1
     fi
 done
 
