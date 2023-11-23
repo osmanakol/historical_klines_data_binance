@@ -155,8 +155,10 @@ do
     url=$(generate_url "$temp_start_date")
     zip_file_name=$(get_zip_file_name "$temp_start_date")
     
-    dowload_file "$url" "$zip_file_name"&
-    extract_file "$zip_file_name" "$temp_start_date"&
+    {
+        dowload_file "$url" "$zip_file_name"
+        extract_file "$zip_file_name" "$temp_start_date"
+    }&
 
     if [[ "$OSTYPE" == "darwin"* ]]; then
         temp_start_date=$(date -j -v +1d -f "%Y-%m-%d" "$temp_start_date" +%Y-%m-%d)
